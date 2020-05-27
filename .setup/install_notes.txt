@@ -1,0 +1,28 @@
+Setup From Scratch on 18.04 Ubuntu VM
+
+Install Live server ubuntu-18.04.4-live-server-adm64.iso
+Follow the script to install the script directly off of https://submitty.org/sysadmin/installation
+** Make sure NOT to select PAM as the auth source due to countless issues regarding our custom deployment setup
+
+
+Run the custom setup script directly via curl:  bash -c "$(curl -s https://raw.githubusercontent.com/andrewtheiss/Submitty/master/.setup/bootstrap.sh)"
+
+Add any number of users via:
+/usr/local/submitty/sbin/:  python3 adduser.py atheiss
+
+TODO **** 
+- Add setps for https certificate creating via whatever server means you choose
+
+
+
+*** Testing Local VM in Virtual Box install ****
+Under network -> Attached to: Bridged Adapter for the current network connection
+In virtual env:  ifconfig | grep inet
+
+
+*** Database editing direct ***
+Any time you want to edit postgres items you can login to postgres via:
+sudo su - postgres
+psql
+\c submitty
+select * from users;
